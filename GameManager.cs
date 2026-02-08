@@ -1,6 +1,4 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -78,11 +76,13 @@ public class GameManager : MonoBehaviour
         if (isTransitioning)
         {
             //LogReader.Read(""); сюда кастом ошибку
+            Debug.Log($"asasasassssssss");
             return;
         }
         if (newState == null)
         {
            // LogReader.Read("");  надо ошибку написать
+           return;
         }
         if(currentState != null)
         {
@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
         currentState = newState;
         foreach(var service in stateServices)
             service.OnEnter(currentState);
+        isTransitioning = false;
     }
 
     public void GoToMenu()
